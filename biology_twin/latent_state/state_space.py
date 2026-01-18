@@ -1,4 +1,4 @@
-from typing import Dict, Any, Callable
+from typing import Dict, Any, Callable, Optional
 import torch
 import torch.nn as nn
 from torchdiffeq import odeint

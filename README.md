@@ -83,14 +83,28 @@ biology-twin/
 ```
 
 ## Quick Start
-1. Create a Python 3.9+ environment, install dependencies:
-```
-pip install -r requirements.txt
-```
-2. Run the synthetic demo:
-```
-python run_demo.py
-```
+
+### Local Development
+1. Install dependencies: `pip install -r requirements.txt`
+2. Run demo: `python run_demo.py`
+3. Train foundation model: `python train_foundation.py`
+4. Start API: `uvicorn api.main:app --reload`
+5. Start frontend: `streamlit run frontend/app.py`
+
+### Docker
+1. Build and run: `docker-compose up --build`
+2. API at http://localhost:8000
+3. Frontend at http://localhost:8501
+
+### Testing
+Run tests: `pytest tests/`
+
+## Production Features
+- Docker containerization
+- Model versioning in `models/`
+- Configurable via `config/default.yaml`
+- Logging and error handling
+- Unit tests
 
 ## Next Steps
 - NeurIPS-style paper outline and exact neural architectures.
@@ -99,3 +113,4 @@ python run_demo.py
 - Solo-dev vs research-lab scoping with milestones.
 # PERSONAL-BIOLOGY-TWIN
 # PERSONAL-BIOLOGY-TWIN
+# Sentinel

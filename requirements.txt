@@ -10,4 +10,11 @@ streamlit>=1.25
 pytest>=7.4
 black>=23.0
 flake8>=6.0
-docker
+wfdb>=4.1
+pyro-ppl>=1.8
+flwr>=1.5
+kubernetes>=26.0
+prometheus-client>=0.17
+elasticsearch>=8.0
+logstash>=1.0
+kibana>=1.0

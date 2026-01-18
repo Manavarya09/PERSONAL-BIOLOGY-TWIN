@@ -52,6 +52,7 @@ class FoundationModel:
     def encode(self, signals: Dict[str, np.ndarray]) -> np.ndarray:
         """Encode signals to latent embeddings."""
         data = torch.tensor(np.stack(list(signals.values()), axis=-1), dtype=torch.float32).to(self.device)
+        data = data.unsqueeze(0)  # Add batch dim
         with torch.no_grad():
             emb = self.model(data)
         return emb.cpu().numpy()
