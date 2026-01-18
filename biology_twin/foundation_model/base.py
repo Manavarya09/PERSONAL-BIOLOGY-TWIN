@@ -10,7 +10,7 @@ class PhysiologicalTransformer(nn.Module):
     def __init__(self, input_dim: int, embed_dim: int = 64, num_heads: int = 8, num_layers: int = 4):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, embed_dim)
-        self.pos_encoder = nn.Embedding(1000, embed_dim)  # Max seq len
+        self.pos_encoder = nn.Embedding(2000, embed_dim)  # Max seq len
         encoder_layer = nn.TransformerEncoderLayer(d_model=embed_dim, nhead=num_heads, batch_first=True)
         self.transformer = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
         self.output_proj = nn.Linear(embed_dim, embed_dim)

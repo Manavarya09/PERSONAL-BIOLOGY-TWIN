@@ -12,8 +12,9 @@ def train_foundation_model(config_path: str = "config/default.yaml"):
     fm = FoundationModel(input_dim=cfg.get("input_dim", 10), embedding_dim=cfg["embedding_dim"], device=device)
     loader = DataLoader()
 
-    # Load training data
-    train_data = loader.load_physionet()
+    # Load training data from PhysioNet
+    print("Loading PhysioNet data...")
+    train_data = loader.load_physionet("apnea-ecg")
     preprocessed = loader.preprocess_irregular_ts(train_data)
     cleaned = loader.detect_artifacts(preprocessed)
 

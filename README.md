@@ -105,6 +105,28 @@ Run tests: `pytest tests/`
 - Configurable via `config/default.yaml`
 - Logging and error handling
 - Unit tests
+- **Real Dataset Integration**: PhysioNet (wfdb), UK Biobank (synthetic), WESAD
+- **Bayesian Uncertainty**: Pyro-based variational inference
+- **Federated Learning**: Flower framework for privacy-preserving training
+- **Cloud Deployment**: Kubernetes manifests for AWS/GCP
+- **Monitoring**: Prometheus metrics
+- **Logging**: ELK stack (Elasticsearch)
+
+## Deployment
+
+### Kubernetes
+1. Build Docker image: `docker build -t biology-twin .`
+2. Deploy to cluster: `kubectl apply -f k8s/deployment.yaml`
+3. Access API: LoadBalancer service
+4. Monitor: Prometheus at :9090, Grafana at :3000
+
+### Federated Learning
+1. Start server: `python -c "from biology_twin.federated.learning import FederatedServer; s = FederatedServer(model); s.start_server()"`
+2. Start clients: `python -c "from biology_twin.federated.learning import start_federated_client; start_federated_client(model, train_loader, val_loader)"`
+
+### Monitoring Setup
+- Prometheus scrapes metrics from :8001
+- ELK logs to Elasticsearch at localhost:9200
 
 ## Next Steps
 - NeurIPS-style paper outline and exact neural architectures.

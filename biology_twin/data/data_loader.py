@@ -11,15 +11,24 @@ class DataLoader:
         self.data_dir = Path(data_dir)
         self.data_dir.mkdir(exist_ok=True)
 
-    def load_physionet(self, subset: str = "mimic") -> Dict[str, np.ndarray]:
-        """Load PhysioNet data (stub: assumes CSV format)."""
-        # In production, use wfdb library
-        file_path = self.data_dir / f"{subset}.csv"
-        if file_path.exists():
-            df = pd.read_csv(file_path)
-            return {col: df[col].values for col in df.columns if col != "time"}
+    def load_physionet(self, dataset: str = "apnea-ecg") -> Dict[str, np.ndarray]:
+        """Load PhysioNet dataset using wfdb."""
+        import wfdb
+        dataset_dir = self.data_dir / dataset
+        dataset_dir.mkdir(exist_ok=True)
+        
+        # Download if not exists
+        if not list(dataset_dir.glob("*.hea")):
+            print(f"Downloading {dataset}...")
+            wfdb.dl_database(dataset, str(dataset_dir))
+        
+        # Load sample record
+        records = wfdb.get_record_list(dataset, str(dataset_dir))
+        if records:
+            record = wfdb.rdrecord(records[0], pn_dir=dataset)
+            signals = {sig: record.p_signal[:, i] for i, sig in enumerate(record.sig_name)}
+            return self.preprocess_irregular_ts(signals)
         else:
-            # Synthetic fallback
             return self._synthetic_physio_data()
 
     def load_sleep_edf(self) -> Dict[str, np.ndarray]:

@@ -21,10 +21,10 @@ def main():
         cfg = yaml.safe_load(f)
 
     signals = synthetic_signals(1024, seed=cfg["seed"]) 
-    fm = FoundationModel(embedding_dim=cfg["embedding_dim"], seed=cfg["seed"]) 
+    fm = FoundationModel(input_dim=3, embedding_dim=cfg["embedding_dim"], device="cpu") 
     emb = fm.encode(signals)
 
-    twin = LatentTwin(state_dim=cfg["state_dim"], seed=cfg["seed"]) 
+    twin = LatentTwin(state_dim=cfg["state_dim"], device="cpu") 
     twin.initialize(emb)
     updated = twin.update(emb)
     traj = twin.predict(horizon=cfg["horizon_days"]) 
