@@ -1,0 +1,4 @@
+seed: 123
+embedding_dim: 64
+state_dim: 8
+horizon_days: 7
