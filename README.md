@@ -27,6 +27,7 @@
 - [Deployment](#-deployment)
 - [Testing](#-testing)
 - [Contributing](#-contributing)
+- [Security](#-security)
 - [Research](#-research)
 - [License](#-license)
 - [Citation](#-citation)
@@ -385,7 +386,20 @@ For research collaborations or academic partnerships, please contact the maintai
 
 ---
 
-## 📊 Research
+## � Security
+
+We take security seriously, especially given the health-related nature of this research. Please see our [Security Policy](SECURITY.md) for:
+
+- How to report security vulnerabilities
+- Security best practices for contributors
+- Privacy and safety considerations
+- Security testing guidelines
+
+**Important:** Never commit sensitive health data or PHI to this repository.
+
+---
+
+## �📊 Research
 
 ### Publications
 
