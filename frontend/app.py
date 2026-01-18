@@ -103,7 +103,14 @@ st.markdown("""
         background-color: #ffffff;
     }
     h1, h2, h3, h4, h5, h6 {
-        color: #000000;
+        color: #000000 !important;
+    }
+    .stMarkdown h1, .stMarkdown h2, .stMarkdown h3,
+    .stMarkdown h4, .stMarkdown h5, .stMarkdown h6 {
+        color: #000000 !important;
+    }
+    .main-header {
+        color: #000000 !important;
     }
     p {
         color: #333333;
